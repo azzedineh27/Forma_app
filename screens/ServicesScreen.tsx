@@ -1,5 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Animated, Linking } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+
+
 
 export default function ServicesScreen() {
   const scale = useRef(new Animated.Value(1)).current;
@@ -26,75 +29,82 @@ export default function ServicesScreen() {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollContainer}>
-      <Text style={styles.title}>Nos Services</Text>
 
-      <Text style={styles.subtitle}>
-        Un accompagnement pédagogique sur-mesure pour chaque élève
-      </Text>
+    <LinearGradient
+      colors={['#fff4e6', '#d0e8ff']} // Dégradé orange clair vers bleu clair
+      style={{ flex: 1 }}
+    >
+        
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <Text style={styles.title}>Nos Services</Text>
 
-      {/* Services list */}
-      <View style={styles.servicesContainer}>
-        {[
-          { title: 'Cours Particuliers', desc: 'Cours à domicile dans toutes les matières scolaires.' },
-          { title: 'Soutien Scolaire', desc: 'Aide hebdomadaire pour réussir toute l’année.' },
-          { title: 'Méthodologie', desc: 'Apprendre à s’organiser, mieux travailler et devenir autonome.' },
-          { title: 'Préparation aux Examens', desc: 'Stages intensifs pour le Brevet, le Bac, et concours.' }
-        ].map((service, index) => (
-          <View key={index} style={styles.serviceCard}>
-            <Text style={styles.serviceTitle}>{service.title}</Text>
-            <Text style={styles.serviceDescription}>{service.desc}</Text>
-          </View>
-        ))}
-      </View>
+        <Text style={styles.subtitle}>
+          Un accompagnement pédagogique sur-mesure pour chaque élève
+        </Text>
 
-      {/* Pourquoi choisir Étude Plus ? */}
-<View style={styles.section}>
-  <Text style={styles.sectionTitle}>Pourquoi choisir Étude Plus ?</Text>
-  <View style={styles.featuresRow}>
-    {[
-      { icon: '🤝', label: 'Suivi personnalisé' },
-      { icon: '👩‍🏫', label: 'Enseignants experts' },
-      { icon: '🚀', label: 'Progrès rapides' }
-    ].map((item, index) => (
-      <View key={index} style={styles.featureCard}>
-        <Text style={styles.featureIcon}>{item.icon}</Text>
-        <Text style={styles.featureText}>{item.label}</Text>
-      </View>
-    ))}
+        {/* Services list */}
+        <View style={styles.servicesContainer}>
+          {[
+            { title: 'Cours Particuliers', desc: 'Cours à domicile dans toutes les matières scolaires.' },
+            { title: 'Soutien Scolaire', desc: 'Aide hebdomadaire pour réussir toute l’année.' },
+            { title: 'Méthodologie', desc: 'Apprendre à s’organiser, mieux travailler et devenir autonome.' },
+            { title: 'Préparation aux Examens', desc: 'Stages intensifs pour le Brevet, le Bac, et concours.' }
+          ].map((service, index) => (
+            <View key={index} style={styles.serviceCard}>
+              <Text style={styles.serviceTitle}>{service.title}</Text>
+              <Text style={styles.serviceDescription}>{service.desc}</Text>
+            </View>
+          ))}
+        </View>
+
+        {/* Pourquoi choisir Étude Plus ? */}
+  <View style={styles.section}>
+    <Text style={styles.sectionTitle}>Pourquoi choisir Étude Plus ?</Text>
+    <View style={styles.featuresRow}>
+      {[
+        { icon: '🤝', label: 'Suivi personnalisé' },
+        { icon: '👩‍🏫', label: 'Enseignants experts' },
+        { icon: '🚀', label: 'Progrès rapides' }
+      ].map((item, index) => (
+        <View key={index} style={styles.featureCard}>
+          <Text style={styles.featureIcon}>{item.icon}</Text>
+          <Text style={styles.featureText}>{item.label}</Text>
+        </View>
+      ))}
+    </View>
   </View>
-</View>
 
-{/* Comment se déroule l’accompagnement ? */}
-<View style={styles.section}>
-  <Text style={styles.sectionTitle}>Comment se déroule l’accompagnement ?</Text>
-  <View style={styles.stepsContainer}>
-    {[
-      { icon: '📞', label: 'Prise de contact' },
-      { icon: '🎯', label: 'Analyse du besoin' },
-      { icon: '📚', label: 'Mise en place du suivi' }
-    ].map((step, index) => (
-      <View key={index} style={styles.stepItem}>
-        <Text style={styles.stepIcon}>{step.icon}</Text>
-        <View style={styles.stepConnector} />
-        <Text style={styles.stepLabel}>{step.label}</Text>
-      </View>
-    ))}
+  {/* Comment se déroule l’accompagnement ? */}
+  <View style={styles.section}>
+    <Text style={styles.sectionTitle}>Comment se déroule l’accompagnement ?</Text>
+    <View style={styles.stepsContainer}>
+      {[
+        { icon: '📞', label: 'Prise de contact' },
+        { icon: '🎯', label: 'Analyse du besoin' },
+        { icon: '📚', label: 'Mise en place du suivi' }
+      ].map((step, index) => (
+        <View key={index} style={styles.stepItem}>
+          <Text style={styles.stepIcon}>{step.icon}</Text>
+          <Text style={styles.stepLabel}>{step.label}</Text>
+        </View>
+      ))}
+    </View>
   </View>
-</View>
 
-      {/* CTA */}
-      <Animated.View style={[styles.buttonWrapper, { transform: [{ scale }] }]}>
-        <TouchableOpacity onPress={openServicesPage} style={styles.button}>
-          <Text style={styles.buttonText}>Voir plus sur notre site</Text>
-        </TouchableOpacity>
-      </Animated.View>
-    </ScrollView>
+        {/* CTA */}
+        <Animated.View style={[styles.buttonWrapper, { transform: [{ scale }] }]}>
+          <TouchableOpacity onPress={openServicesPage} style={styles.button}>
+            <Text style={styles.buttonText}>Voir plus sur notre site</Text>
+          </TouchableOpacity>
+        </Animated.View>
+      </ScrollView>
+  </LinearGradient>
   );
-}const styles = StyleSheet.create({
+}
+const styles = StyleSheet.create({
   scrollContainer: {
     padding: 24,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: 'transparent',
     alignItems: 'center',
   },
   title: {
@@ -121,7 +131,7 @@ export default function ServicesScreen() {
     borderRadius: 15,
     padding: 20,
     marginVertical: 10,
-    shadowColor: '#000',
+    shadowColor: '#ff8800',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.1,
     shadowRadius: 6,
@@ -169,7 +179,7 @@ export default function ServicesScreen() {
     paddingVertical: 20,
     paddingHorizontal: 10,
     borderRadius: 14,
-    shadowColor: '#000',
+    shadowColor: '#ff8800',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.1,
     shadowRadius: 5,
@@ -191,33 +201,32 @@ export default function ServicesScreen() {
   stepsContainer: {
     marginTop: 24,
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    rowGap: 30,
-  },
-  stepItem: {
-    width: 110,
+    justifyContent: 'center',
+    columnGap: 16,
+  },stepItem: {
+    width: 100,
+    backgroundColor: '#fff',
+    borderRadius: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 8,
     alignItems: 'center',
+    shadowColor: '#ff8800',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+    elevation: 6,
   },
   stepIcon: {
-    fontSize: 34,
+    fontSize: 28,
     color: '#ff8800',
-    marginBottom: 10,
-  },
-  stepConnector: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    backgroundColor: '#ff8800',
-    marginBottom: 10,
+    marginBottom: 8,
   },
   stepLabel: {
-    fontSize: 13,
-    color: '#1e3a8a',
+    fontSize: 12,
+    color: '#0f3b67',
     fontWeight: '600',
     textAlign: 'center',
-  },
-
+  },  
   // CTA
   buttonWrapper: {
     marginTop: 20,
@@ -229,7 +238,7 @@ export default function ServicesScreen() {
     paddingHorizontal: 32,
     borderRadius: 30,
     alignItems: 'center',
-    shadowColor: '#000',
+    shadowColor: '#ff8800',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.15,
     shadowRadius: 5,
