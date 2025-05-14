@@ -8,7 +8,6 @@ if (Platform.OS === 'android') {
 
 export default function ContactScreen() {
   const scale = useRef(new Animated.Value(1)).current;
-
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const faqList = [
@@ -27,42 +26,21 @@ export default function ContactScreen() {
   useEffect(() => {
     Animated.loop(
       Animated.sequence([
-        Animated.timing(scale, {
-          toValue: 1.05,
-          duration: 800,
-          useNativeDriver: true,
-        }),
-        Animated.timing(scale, {
-          toValue: 1,
-          duration: 800,
-          useNativeDriver: true,
-        }),
+        Animated.timing(scale, { toValue: 1.05, duration: 800, useNativeDriver: true }),
+        Animated.timing(scale, { toValue: 1, duration: 800, useNativeDriver: true }),
       ])
     ).start();
   }, []);
 
-  const handleEmail = () => {
-    Linking.openURL('mailto:contact@etudeplusforma.fr');
-  };
-
-  const openEtudePlus = () => {
-    Linking.openURL('https://etudeplus.org');
-  };
-
-  const openEtudePlusForma = () => {
-    Linking.openURL('https://www.etudeplusforma.fr');
-  };
-
-  const openGoogleReview = () => {
-    Linking.openURL('https://g.page/r/Ce9D1gWzvRPoEBM/review');
-  };
+  const handleEmail = () => { Linking.openURL('mailto:contact@etudeplusforma.fr'); };
+  const openEtudePlus = () => { Linking.openURL('https://etudeplus.org'); };
+  const openEtudePlusForma = () => { Linking.openURL('https://www.etudeplusforma.fr'); };
+  const openGoogleReview = () => { Linking.openURL('https://g.page/r/Ce9D1gWzvRPoEBM/review'); };
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <Text style={styles.title}>Nous contacter</Text>
-      <Text style={styles.subtitle}>
-        Une question ? Un projet ? N’hésitez pas à nous écrire, nous vous répondrons rapidement.
-      </Text>
+      <Text style={styles.subtitle}>Une question ? Un projet ? N’hésitez pas à nous écrire, nous vous répondrons rapidement.</Text>
 
       <Animated.View style={[styles.buttonWrapper, { transform: [{ scale }] }]}>
         <TouchableOpacity style={styles.button} onPress={handleEmail}>
@@ -72,31 +50,41 @@ export default function ContactScreen() {
 
       <View style={styles.linksContainer}>
         <Text style={styles.sectionTitle}>Découvrez nos sites</Text>
+
         <TouchableOpacity style={styles.linkButton} onPress={openEtudePlus}>
-          <Text style={styles.linkText}>🔗 Visiter Étude Plus</Text>
+          <View style={styles.linkContent}>
+            <Text style={styles.linkIcon}>🔗</Text>
+            <Text style={styles.linkText}>Visiter Étude Plus</Text>
+            <Text style={styles.linkArrow}>➔</Text>
+          </View>
         </TouchableOpacity>
+
         <TouchableOpacity style={styles.linkButton} onPress={openEtudePlusForma}>
-          <Text style={styles.linkText}>🔗 Visiter Étude Plus Formation</Text>
+          <View style={styles.linkContent}>
+            <Text style={styles.linkIcon}>🔗</Text>
+            <Text style={styles.linkText}>Visiter Étude Plus Formation</Text>
+            <Text style={styles.linkArrow}>➔</Text>
+          </View>
         </TouchableOpacity>
+
         <TouchableOpacity style={styles.linkButton} onPress={openGoogleReview}>
-          <Text style={styles.linkText}>⭐ Laisser un avis Google</Text>
+          <View style={styles.linkContent}>
+            <Text style={styles.linkIcon}>⭐</Text>
+            <Text style={styles.linkText}>Laisser un avis Google</Text>
+            <Text style={styles.linkArrow}>➔</Text>
+          </View>
         </TouchableOpacity>
       </View>
 
-      {/* FAQ */}
+{/* FAQ Section unchanged */}
       <View style={styles.faqSection}>
         <Text style={styles.faqTitle}>FOIRE AUX QUESTIONS (FAQ)</Text>
         <View style={styles.faqBox}>
           {faqList.map((item, index) => (
             <View key={index}>
-              <TouchableOpacity
-                onPress={() => toggleFAQ(index)}
-                style={styles.faqQuestionWrapper}
-              >
+              <TouchableOpacity onPress={() => toggleFAQ(index)} style={styles.faqQuestionWrapper}>
                 <Text style={styles.faqQuestion}>{item.question}</Text>
-                <Text style={styles.faqArrow}>
-                  {activeIndex === index ? '▲' : '▼'}
-                </Text>
+                <Text style={styles.faqArrow}>{activeIndex === index ? '▲' : '▼'}</Text>
               </TouchableOpacity>
               {activeIndex === index && (
                 <View style={styles.faqAnswerWrapper}>
@@ -115,19 +103,19 @@ export default function ContactScreen() {
 const styles = StyleSheet.create({
   scrollContainer: {
     padding: 24,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#fff7f0',
     alignItems: 'center',
   },
   title: {
     fontSize: 32,
     fontWeight: 'bold',
-    color: '#1e3a8a',
+    color: '#0f3b67',
     marginBottom: 8,
     textAlign: 'center',
   },
   subtitle: {
     fontSize: 18,
-    color: '#ff8800',
+    color: '#ec6b1e',
     fontWeight: '600',
     marginBottom: 24,
     textAlign: 'center',
@@ -136,7 +124,7 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   button: {
-    backgroundColor: '#ff8800',
+    backgroundColor: '#ec6b1e',
     paddingVertical: 14,
     paddingHorizontal: 28,
     borderRadius: 30,
@@ -171,7 +159,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginVertical: 8,
     alignItems: 'center',
-    borderColor: '#1e3a8a',
+    borderColor: '#0f172a',
     borderWidth: 1,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 3 },
@@ -180,10 +168,29 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   linkText: {
-    color: '#1e3a8a',
+    color: '#0f172a',
     fontSize: 16,
     fontWeight: '600',
   },
+
+linkContent: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  width: '100%',
+},
+
+linkIcon: {
+  fontSize: 18,
+  marginRight: 8,
+},
+
+linkArrow: {
+  color: '#0f52ba',
+  fontSize: 20,
+  fontWeight: 'bold',
+},
+
   faqSection: {
     marginTop: 50,
     width: '100%',

@@ -1,8 +1,5 @@
 import React, { useRef, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Animated, Linking } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-
-
 
 export default function ServicesScreen() {
   const scale = useRef(new Animated.Value(1)).current;
@@ -10,16 +7,8 @@ export default function ServicesScreen() {
   useEffect(() => {
     Animated.loop(
       Animated.sequence([
-        Animated.timing(scale, {
-          toValue: 1.05,
-          duration: 800,
-          useNativeDriver: true,
-        }),
-        Animated.timing(scale, {
-          toValue: 1,
-          duration: 800,
-          useNativeDriver: true,
-        }),
+        Animated.timing(scale, { toValue: 1.05, duration: 800, useNativeDriver: true }),
+        Animated.timing(scale, { toValue: 1, duration: 800, useNativeDriver: true }),
       ])
     ).start();
   }, []);
@@ -29,21 +18,13 @@ export default function ServicesScreen() {
   };
 
   return (
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      {/* Zone BLEUE FONCÉE */}
+      <View style={styles.darkSection}>
+        <Text style={styles.mainTitle}>Nos Services</Text>
+        <Text style={styles.mainSubtitle}>Un accompagnement pédagogique sur-mesure pour chaque élève</Text>
 
-    <LinearGradient
-      colors={['#fff4e6', '#d0e8ff']} // Dégradé orange clair vers bleu clair
-      style={{ flex: 1 }}
-    >
-        
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <Text style={styles.title}>Nos Services</Text>
-
-        <Text style={styles.subtitle}>
-          Un accompagnement pédagogique sur-mesure pour chaque élève
-        </Text>
-
-        {/* Services list */}
-        <View style={styles.servicesContainer}>
+        <View style={styles.servicesGrid}>
           {[
             { title: 'Cours Particuliers', desc: 'Cours à domicile dans toutes les matières scolaires.' },
             { title: 'Soutien Scolaire', desc: 'Aide hebdomadaire pour réussir toute l’année.' },
@@ -56,181 +37,183 @@ export default function ServicesScreen() {
             </View>
           ))}
         </View>
+      </View>
 
-        {/* Pourquoi choisir Étude Plus ? */}
-  <View style={styles.section}>
-    <Text style={styles.sectionTitle}>Pourquoi choisir Étude Plus ?</Text>
-    <View style={styles.featuresRow}>
-      {[
-        { icon: '🤝', label: 'Suivi personnalisé' },
-        { icon: '👩‍🏫', label: 'Enseignants experts' },
-        { icon: '🚀', label: 'Progrès rapides' }
-      ].map((item, index) => (
-        <View key={index} style={styles.featureCard}>
-          <Text style={styles.featureIcon}>{item.icon}</Text>
-          <Text style={styles.featureText}>{item.label}</Text>
+      {/* Zone BLEUE CLAIRE */}
+      <View style={styles.lightSection}>
+        <Text style={styles.sectionTitle}>Pourquoi choisir Étude Plus ?</Text>
+        <View style={styles.featuresRow}>
+          {[
+            { icon: '🤝', label: 'Suivi personnalisé' },
+            { icon: '👩‍🏫', label: 'Enseignants experts' },
+            { icon: '🚀', label: 'Progrès rapides' },
+          ].map((feature, index) => (
+            <View key={index} style={styles.featureCard}>
+              <Text style={styles.featureIcon}>{feature.icon}</Text>
+              <Text style={styles.featureText}>{feature.label}</Text>
+            </View>
+          ))}
         </View>
-      ))}
-    </View>
-  </View>
 
-  {/* Comment se déroule l’accompagnement ? */}
-  <View style={styles.section}>
-    <Text style={styles.sectionTitle}>Comment se déroule l’accompagnement ?</Text>
-    <View style={styles.stepsContainer}>
-      {[
-        { icon: '📞', label: 'Prise de contact' },
-        { icon: '🎯', label: 'Analyse du besoin' },
-        { icon: '📚', label: 'Mise en place du suivi' }
-      ].map((step, index) => (
-        <View key={index} style={styles.stepItem}>
-          <Text style={styles.stepIcon}>{step.icon}</Text>
-          <Text style={styles.stepLabel}>{step.label}</Text>
+        <Text style={styles.sectionTitle}>Comment se déroule l’accompagnement ?</Text>
+        <View style={styles.stepsRow}>
+          {[
+            { icon: '📞', label: 'Prise de contact' },
+            { icon: '🎯', label: 'Analyse du besoin' },
+            { icon: '📚', label: 'Mise en place du suivi' },
+          ].map((step, index) => (
+            <View key={index} style={styles.stepCard}>
+              <Text style={styles.stepIcon}>{step.icon}</Text>
+              <Text style={styles.stepText}>{step.label}</Text>
+            </View>
+          ))}
         </View>
-      ))}
-    </View>
-  </View>
+      </View>
 
-        {/* CTA */}
+            {/* CTA avec fond bleu clair */}
+      <View style={styles.lightSection}>
         <Animated.View style={[styles.buttonWrapper, { transform: [{ scale }] }]}>
-          <TouchableOpacity onPress={openServicesPage} style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={openServicesPage}>
             <Text style={styles.buttonText}>Voir plus sur notre site</Text>
           </TouchableOpacity>
         </Animated.View>
-      </ScrollView>
-  </LinearGradient>
+      </View>
+    </ScrollView>
   );
 }
+
 const styles = StyleSheet.create({
-  scrollContainer: {
-    padding: 24,
-    backgroundColor: 'transparent',
+  scrollContainer: { alignItems: 'center' },
+
+  darkSection: {
+    backgroundColor: '#0f3b67',
+    width: '100%',
+    paddingVertical: 40,
+    paddingHorizontal: 20,
     alignItems: 'center',
   },
-  title: {
+  mainTitle: {
     fontSize: 34,
     fontWeight: 'bold',
-    color: '#1e3a8a',
+    color: '#ffffff',
     marginBottom: 8,
     textAlign: 'center',
   },
-  subtitle: {
+  mainSubtitle: {
     fontSize: 18,
     color: '#ff8800',
     fontWeight: '600',
     marginBottom: 24,
     textAlign: 'center',
   },
-  servicesContainer: {
-    width: '100%',
-    maxWidth: 700,
-    marginBottom: 40,
+  servicesGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: 16,
   },
   serviceCard: {
     backgroundColor: '#ffffff',
-    borderRadius: 15,
-    padding: 20,
-    marginVertical: 10,
+    borderRadius: 16,
+    padding: 16,
+    margin: 8,
+    width: 160,
+    alignItems: 'center',
     shadowColor: '#ff8800',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-    elevation: 4,
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.4,
+    shadowRadius: 10,
+    elevation: 6,
   },
   serviceTitle: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: 'bold',
     color: '#0f3b67',
     marginBottom: 8,
+    textAlign: 'center',
   },
   serviceDescription: {
-    fontSize: 16,
+    fontSize: 14,
     color: '#1e3a8a',
-    lineHeight: 24,
+    textAlign: 'center',
   },
 
-  // Section générique
-  section: {
+  lightSection: {
+    backgroundColor: '#d0e8ff',
     width: '100%',
-    maxWidth: 700,
-    marginBottom: 40,
-    marginTop: 20,
+    paddingVertical: 40,
+    paddingHorizontal: 20,
+    alignItems: 'center',
   },
   sectionTitle: {
     fontSize: 24,
     fontWeight: 'bold',
     color: '#0f3b67',
-    marginBottom: 16,
+    marginBottom: 20,
     textAlign: 'center',
   },
-
-  // Pourquoi Étude Plus (cartes horizontales)
   featuresRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
     gap: 16,
-    marginTop: 20,
+    marginBottom: 30,
   },
   featureCard: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#ffffff',
+    borderRadius: 16,
+    padding: 16,
     width: 100,
-    backgroundColor: '#fff',
-    paddingVertical: 20,
-    paddingHorizontal: 10,
-    borderRadius: 14,
+    alignItems: 'center',
     shadowColor: '#ff8800',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 4,
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.4,
+    shadowRadius: 10,
+    elevation: 6,
   },
   featureIcon: {
-    fontSize: 30,
+    fontSize: 28,
     marginBottom: 8,
-    color: '#ff8800',
   },
   featureText: {
-    fontSize: 14,
-    color: '#1e3a8a',
+    fontSize: 12,
     fontWeight: '600',
+    color: '#0f3b67',
     textAlign: 'center',
   },
-
-  // Timeline verticale stylisée
-  stepsContainer: {
-    marginTop: 24,
+  stepsRow: {
     flexDirection: 'row',
     justifyContent: 'center',
-    columnGap: 16,
-  },stepItem: {
-    width: 100,
-    backgroundColor: '#fff',
+    flexWrap: 'wrap',
+    gap: 16,
+  },
+  stepCard: {
+    backgroundColor: '#ffffff',
     borderRadius: 16,
-    paddingVertical: 12,
-    paddingHorizontal: 8,
+    padding: 16,
+    width: 100,
     alignItems: 'center',
     shadowColor: '#ff8800',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.4,
+    shadowRadius: 10,
     elevation: 6,
   },
   stepIcon: {
     fontSize: 28,
-    color: '#ff8800',
     marginBottom: 8,
   },
-  stepLabel: {
+  stepText: {
     fontSize: 12,
-    color: '#0f3b67',
     fontWeight: '600',
+    color: '#0f3b67',
     textAlign: 'center',
-  },  
-  // CTA
+  },
+
+  // CTA mis à jour
   buttonWrapper: {
     marginTop: 20,
-    marginBottom: 50,
+    marginBottom: 40,
   },
   button: {
     backgroundColor: '#ff8800',
@@ -239,13 +222,13 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     alignItems: 'center',
     shadowColor: '#ff8800',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.15,
-    shadowRadius: 5,
-    elevation: 5,
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.4,
+    shadowRadius: 10,
+    elevation: 6,
   },
   buttonText: {
-    color: '#ffffff',
+    color: '#0f3b67',
     fontSize: 16,
     fontWeight: 'bold',
   },
