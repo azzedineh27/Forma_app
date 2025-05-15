@@ -19,8 +19,9 @@ export default function ServicesScreen() {
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
-      {/* Zone BLEUE FONCÉE */}
-      <View style={styles.darkSection}>
+      
+      {/* En-tête */}
+      <View style={styles.headerSection}>
         <Text style={styles.mainTitle}>Nos Services</Text>
         <Text style={styles.mainSubtitle}>Un accompagnement pédagogique sur-mesure pour chaque élève</Text>
 
@@ -39,8 +40,8 @@ export default function ServicesScreen() {
         </View>
       </View>
 
-      {/* Zone BLEUE CLAIRE */}
-      <View style={styles.lightSection}>
+      {/* Pourquoi nous ? */}
+      <View style={styles.whiteSection}>
         <Text style={styles.sectionTitle}>Pourquoi choisir Étude Plus ?</Text>
         <View style={styles.featuresRow}>
           {[
@@ -70,23 +71,23 @@ export default function ServicesScreen() {
         </View>
       </View>
 
-            {/* CTA avec fond bleu clair */}
-      <View style={styles.lightSection}>
+      {/* CTA */}
+      <View style={styles.ctaSection}>
         <Animated.View style={[styles.buttonWrapper, { transform: [{ scale }] }]}>
           <TouchableOpacity style={styles.button} onPress={openServicesPage}>
             <Text style={styles.buttonText}>Voir plus sur notre site</Text>
           </TouchableOpacity>
         </Animated.View>
       </View>
+      
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  scrollContainer: { alignItems: 'center' },
+  scrollContainer: { alignItems: 'center', backgroundColor: '#fff7f0' },
 
-  darkSection: {
-    backgroundColor: '#0f3b67',
+  headerSection: {
     width: '100%',
     paddingVertical: 40,
     paddingHorizontal: 20,
@@ -95,13 +96,13 @@ const styles = StyleSheet.create({
   mainTitle: {
     fontSize: 34,
     fontWeight: 'bold',
-    color: '#ffffff',
+    color: '#0f3b67',
     marginBottom: 8,
     textAlign: 'center',
   },
   mainSubtitle: {
     fontSize: 18,
-    color: '#ff8800',
+    color: '#ec6b1e',
     fontWeight: '600',
     marginBottom: 24,
     textAlign: 'center',
@@ -119,11 +120,11 @@ const styles = StyleSheet.create({
     margin: 8,
     width: 160,
     alignItems: 'center',
-    shadowColor: '#ff8800',
+    shadowColor: '#ec6b1e',
     shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.4,
-    shadowRadius: 10,
-    elevation: 6,
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 5,
   },
   serviceTitle: {
     fontSize: 16,
@@ -138,12 +139,20 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
-  lightSection: {
-    backgroundColor: '#d0e8ff',
+  whiteSection: {
+    backgroundColor: '#ffffff',
     width: '100%',
     paddingVertical: 40,
     paddingHorizontal: 20,
     alignItems: 'center',
+    marginTop: 20,
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+    shadowColor: '#ec6b1e',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    elevation: 6,
   },
   sectionTitle: {
     fontSize: 24,
@@ -155,21 +164,20 @@ const styles = StyleSheet.create({
   featuresRow: {
     flexDirection: 'row',
     justifyContent: 'center',
-    flexWrap: 'wrap',
     gap: 16,
     marginBottom: 30,
   },
   featureCard: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#fff7f0',
     borderRadius: 16,
     padding: 16,
     width: 100,
     alignItems: 'center',
-    shadowColor: '#ff8800',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.4,
-    shadowRadius: 10,
-    elevation: 6,
+    shadowColor: '#ec6b1e',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    elevation: 4,
   },
   featureIcon: {
     fontSize: 28,
@@ -184,20 +192,19 @@ const styles = StyleSheet.create({
   stepsRow: {
     flexDirection: 'row',
     justifyContent: 'center',
-    flexWrap: 'wrap',
     gap: 16,
   },
   stepCard: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#fff7f0',
     borderRadius: 16,
     padding: 16,
     width: 100,
     alignItems: 'center',
-    shadowColor: '#ff8800',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.4,
-    shadowRadius: 10,
-    elevation: 6,
+    shadowColor: '#ec6b1e',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    elevation: 4,
   },
   stepIcon: {
     fontSize: 28,
@@ -210,25 +217,29 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
-  // CTA mis à jour
+  ctaSection: {
+    width: '100%',
+    paddingVertical: 40,
+    paddingHorizontal: 20,
+    alignItems: 'center',
+  },
   buttonWrapper: {
-    marginTop: 20,
-    marginBottom: 40,
+    marginTop: 10,
   },
   button: {
-    backgroundColor: '#ff8800',
+    backgroundColor: '#ec6b1e',
     paddingVertical: 14,
     paddingHorizontal: 32,
     borderRadius: 30,
     alignItems: 'center',
-    shadowColor: '#ff8800',
+    shadowColor: '#ec6b1e',
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.4,
-    shadowRadius: 10,
+    shadowRadius: 8,
     elevation: 6,
   },
   buttonText: {
-    color: '#0f3b67',
+    color: '#ffffff',
     fontSize: 16,
     fontWeight: 'bold',
   },

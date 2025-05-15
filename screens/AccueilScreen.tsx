@@ -4,7 +4,6 @@ import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
 export default function AccueilScreen() {
   return (
     <ScrollView contentContainerStyle={styles.container}>
-
       {/* Logo et titre */}
       <View style={styles.header}>
         <Image source={require('../assets/book.png')} style={styles.logo} resizeMode="contain" />
@@ -22,42 +21,46 @@ export default function AccueilScreen() {
       {/* Nos valeurs */}
       <Text style={styles.sectionTitle}>Nos valeurs</Text>
       <View style={styles.valuesRow}>
-        <View style={styles.valueCard}>
-          <Text style={styles.valueIcon}>🤝</Text>
-          <Text style={styles.valueLabel}>Bienveillance</Text>
-        </View>
-        <View style={styles.valueCard}>
-          <Text style={styles.valueIcon}>📈</Text>
-          <Text style={styles.valueLabel}>Excellence</Text>
-        </View>
-        <View style={styles.valueCard}>
-          <Text style={styles.valueIcon}>🧭</Text>
-          <Text style={styles.valueLabel}>Méthode</Text>
-        </View>
+        {[
+          { icon: '🤝', label: 'Bienveillance' },
+          { icon: '📈', label: 'Excellence' },
+          { icon: '🧭', label: 'Méthode' },
+        ].map((val, idx) => (
+          <View key={idx} style={styles.valueCard}>
+            <Text style={styles.valueIcon}>{val.icon}</Text>
+            <Text style={styles.valueLabel}>{val.label}</Text>
+          </View>
+        ))}
       </View>
 
       {/* Chiffres clés */}
       <View style={styles.statsRow}>
-        <View style={[styles.statBubble, { backgroundColor: '#2dc7c8' }]}>
-          <Text style={styles.statValue}>+200</Text>
-          <Text style={styles.statLabel}>élèves suivis</Text>
-        </View>
-        <View style={[styles.statBubble, { backgroundColor: '#5aaaff' }]}>
-          <Text style={styles.statValue}>97%</Text>
-          <Text style={styles.statLabel}>satisfaction</Text>
-        </View>
-        <View style={[styles.statBubble, { backgroundColor: '#7b61ff' }]}>
-          <Text style={styles.statValue}>8 ans</Text>
-          <Text style={styles.statLabel}>d’expérience</Text>
-        </View>
+        {[
+          { value: '+200', label: 'élèves suivis', color: '#ec6b1e' },
+          { value: '97%', label: 'satisfaction', color: '#0f3b67' },
+          { value: '8 ans', label: 'd’expérience', color: '#0f52ba' },
+        ].map((stat, idx) => (
+          <View key={idx} style={[styles.statBubble, { backgroundColor: stat.color }]}>
+            <Text style={styles.statValue}>{stat.value}</Text>
+            <Text style={styles.statLabel}>{stat.label}</Text>
+          </View>
+        ))}
       </View>
 
       {/* Témoignages */}
-      <View style={styles.presentationCard}>
-        <Text style={styles.testimonialTitle}>Ils nous ont fait confiance</Text>
-        <Text style={styles.testimonialText}>« Un suivi remarquable, des progrès visibles en quelques semaines ! » — Parent de collégien</Text>
+      <Text style={styles.sectionTitle}>Ils nous ont fait confiance</Text>
+      <View style={styles.testimonialsRow}>
+        {[
+          { text: '« Un suivi remarquable, des progrès visibles en quelques semaines ! »', author: 'Parent de collégien' },
+          { text: '« Des enseignants à l’écoute et motivants. »', author: 'Élève de terminale' },
+          { text: '« Un enseignement de qualité, ils ont boosté mes capacités ! »', author: 'Élève en Bac Pro' },
+        ].map((testimonial, idx) => (
+          <View key={idx} style={styles.testimonialCard}>
+            <Text style={styles.testimonialText}>{testimonial.text}</Text>
+            <Text style={styles.testimonialAuthor}>— {testimonial.author}</Text>
+          </View>
+        ))}
       </View>
-
     </ScrollView>
   );
 }
@@ -65,7 +68,7 @@ export default function AccueilScreen() {
 const styles = StyleSheet.create({
   container: {
     padding: 24,
-    backgroundColor: '#e6f0ff',
+    backgroundColor: '#fff7f0',
     alignItems: 'center',
   },
   header: {
@@ -85,7 +88,7 @@ const styles = StyleSheet.create({
   },
   tagline: {
     fontSize: 16,
-    color: '#2dc7c8',
+    color: '#ec6b1e',
     marginTop: 4,
     textAlign: 'center',
   },
@@ -94,17 +97,18 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 20,
     marginBottom: 30,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 5,
+    shadowColor: '#ec6b1e',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
+    elevation: 6,
     width: '100%',
   },
   presentationText: {
     fontSize: 16,
     color: '#0f3b67',
     textAlign: 'center',
+    lineHeight: 24,
   },
   sectionTitle: {
     fontSize: 22,
@@ -126,11 +130,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     alignItems: 'center',
     width: 90,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    shadowColor: '#ec6b1e',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    elevation: 4,
   },
   valueIcon: {
     fontSize: 30,
@@ -166,17 +170,34 @@ const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: 'center',
   },
-  testimonialTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#0f3b67',
-    marginBottom: 10,
-    textAlign: 'center',
+  testimonialsRow: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '100%',
+  },
+  testimonialCard: {
+    backgroundColor: '#ffffff',
+    padding: 16,
+    borderRadius: 16,
+    marginBottom: 16,
+    width: '100%',
+    shadowColor: '#ec6b1e',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    elevation: 5,
   },
   testimonialText: {
     fontSize: 16,
-    color: '#0f3b67',
     fontStyle: 'italic',
+    color: '#0f3b67',
     textAlign: 'center',
+    marginBottom: 8,
+  },
+  testimonialAuthor: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#ec6b1e',
+    textAlign: 'right',
   },
 });
