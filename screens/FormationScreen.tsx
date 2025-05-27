@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Animated, Linking } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function FormationScreen() {
   const scale = useRef(new Animated.Value(1)).current;
@@ -19,13 +20,13 @@ export default function FormationScreen() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.mainTitle}>Étude Plus Formation</Text>
+      <Text style={styles.mainTitle}>Etude Plus Formation</Text>
       <Text style={styles.subtitle}>Construisez votre avenir professionnel avec des formations certifiantes</Text>
 
       {/* Phrase mise en valeur */}
       <View style={styles.highlightBox}>
         <Text style={styles.highlightText}>
-          Étude Plus Formation propose des parcours adaptés aux adultes, étudiants et professionnels souhaitant évoluer ou se reconvertir.
+          Etude Plus Formation propose des parcours adaptés aux adultes, étudiants et professionnels souhaitant évoluer ou se reconvertir.
         </Text>
       </View>
 
@@ -52,7 +53,10 @@ export default function FormationScreen() {
           <View key={idx} style={[styles.formuleCard, { borderColor: formule.color }]}>
             <Text style={[styles.formuleTitle, { color: formule.color }]}>{formule.name}</Text>
             {formule.content.map((item, i) => (
-              <Text key={i} style={styles.listItem}>• {item}</Text>
+              <View key={i} style={styles.listItem}>
+                <Ionicons name="checkmark-circle-outline" size={18} color="green" style={{ marginRight: 6 }} />
+                <Text style={styles.listText}>{item}</Text>
+              </View>
             ))}
             <Text style={styles.price}>{formule.price}</Text>
           </View>
@@ -162,12 +166,6 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     elevation: 6,
   },
-  listItem: {
-    fontSize: 16,
-    color: '#0f3b67',
-    marginBottom: 6,
-    textAlign: 'center',
-  },
   formuleCard: {
     backgroundColor: '#ffffff',
     borderWidth: 2,
@@ -186,6 +184,17 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     textAlign: 'center',
   },
+  listItem: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  marginBottom: 6,
+  justifyContent: 'center',
+},
+listText: {
+  fontSize: 16,
+  color: '#0f3b67',
+  textAlign: 'left',
+},
   price: {
     fontSize: 16,
     fontWeight: 'bold',

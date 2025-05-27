@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
 import AccueilScreen from '../screens/AccueilScreen';
-import ServicesScreen from '../screens/ServicesScreen';
+import SoutienScreen from '../screens/SoutienScreen';
 import FormationScreen from '../screens/FormationScreen';
 import ContactScreen from '../screens/ContactScreen';
 
@@ -33,8 +33,8 @@ export default function BottomTabs() {
             case 'Accueil':
               iconName = 'home-outline';
               break;
-            case 'Nos Services':
-              iconName = 'grid-outline';
+            case 'Soutien':
+              iconName = 'book-outline'; // <-- Icône de livre
               break;
             case 'Formation':
               iconName = 'school-outline';
@@ -42,14 +42,14 @@ export default function BottomTabs() {
             case 'Contact':
               iconName = 'mail-outline';
               break;
-          }          
+          }
 
           return <Ionicons name={iconName} size={22} color={color} />;
         },
       })}
     >
       <Tab.Screen name="Accueil" component={AccueilScreen} />
-      <Tab.Screen name="Nos Services" component={ServicesScreen} />
+      <Tab.Screen name="Soutien" component={SoutienScreen} options={{ tabBarLabel: 'Soutien scolaire' }}/>
       <Tab.Screen name="Formation" component={FormationScreen} />
       <Tab.Screen name="Contact" component={ContactScreen} />
     </Tab.Navigator>

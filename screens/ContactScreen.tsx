@@ -1,5 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Animated, Linking, LayoutAnimation, Platform, UIManager } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
+
 
 if (Platform.OS === 'android') {
   UIManager.setLayoutAnimationEnabledExperimental &&
@@ -35,7 +38,7 @@ export default function ContactScreen() {
   const handleEmail = () => { Linking.openURL('mailto:contact@etudeplusforma.fr'); };
   const openEtudePlus = () => { Linking.openURL('https://etudeplus.org'); };
   const openEtudePlusForma = () => { Linking.openURL('https://www.etudeplusforma.fr'); };
-  const openGoogleReview = () => { Linking.openURL('https://g.page/r/Ce9D1gWzvRPoEBM/review'); };
+  const openGoogleReview = () => { Linking.openURL('https://www.google.fr/maps/place/Etude+Plus+Livry-Gargan/@48.92226,2.5409825,17z/data=!4m16!1m9!3m8!1s0x47e613e5338ac575:0x4784d22bd95ee03e!2sEtude+Plus+Livry-Gargan!8m2!3d48.9222565!4d2.5435574!9m1!1b1!16s%2Fg%2F11fqsl52t5!3m5!1s0x47e613e5338ac575:0x4784d22bd95ee03e!8m2!3d48.9222565!4d2.5435574!16s%2Fg%2F11fqsl52t5?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D'); };
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -48,33 +51,53 @@ export default function ContactScreen() {
         </TouchableOpacity>
       </Animated.View>
 
-      <View style={styles.linksContainer}>
-        <Text style={styles.sectionTitle}>Découvrez nos sites</Text>
+      {/* Informations de contact */}
+<View style={styles.contactContainer}>
+  <Text style={styles.sectionTitle}>Informations de contact</Text>
 
-        <TouchableOpacity style={styles.linkButton} onPress={openEtudePlus}>
-          <View style={styles.linkContent}>
-            <Text style={styles.linkIcon}>🔗</Text>
-            <Text style={styles.linkText}>Visiter Étude Plus</Text>
-            <Text style={styles.linkArrow}>➔</Text>
-          </View>
-        </TouchableOpacity>
+  {/* Livry-Gargan */}
+  <View style={styles.contactItem}>
+    <Text style={styles.contactLabel}>Étude Plus - Livry-Gargan</Text>
+    <TouchableOpacity onPress={() => Linking.openURL('tel:+33123456789')}>
+      <Text style={styles.contactPhone}>📞 01 23 45 67 89</Text>
+    </TouchableOpacity>
+    <TouchableOpacity onPress={() => Linking.openURL('https://www.etudeplus.org')}>
+      <Text style={styles.contactLink}>🌐 www.etudeplus.org</Text>
+    </TouchableOpacity>
+  </View>
 
-        <TouchableOpacity style={styles.linkButton} onPress={openEtudePlusForma}>
-          <View style={styles.linkContent}>
-            <Text style={styles.linkIcon}>🔗</Text>
-            <Text style={styles.linkText}>Visiter Étude Plus Formation</Text>
-            <Text style={styles.linkArrow}>➔</Text>
-          </View>
-        </TouchableOpacity>
+  {/* Clichy-sous-Bois */}
+  <View style={styles.contactItem}>
+    <Text style={styles.contactLabel}>Étude Plus - Clichy-sous-Bois</Text>
+    <TouchableOpacity onPress={() => Linking.openURL('tel:+33987654321')}>
+      <Text style={styles.contactPhone}>📞 09 87 65 43 21</Text>
+    </TouchableOpacity>
+  </View>
 
-        <TouchableOpacity style={styles.linkButton} onPress={openGoogleReview}>
-          <View style={styles.linkContent}>
-            <Text style={styles.linkIcon}>⭐</Text>
-            <Text style={styles.linkText}>Laisser un avis Google</Text>
-            <Text style={styles.linkArrow}>➔</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+  {/* Centre de formation */}
+  <View style={styles.contactItem}>
+    <Text style={styles.contactLabel}>Étude Plus Formation</Text>
+    <TouchableOpacity onPress={() => Linking.openURL('tel:+33711223344')}>
+      <Text style={styles.contactPhone}>📞 07 11 22 33 44</Text>
+    </TouchableOpacity>
+    <TouchableOpacity onPress={() => Linking.openURL('https://www.etudeplusforma.fr')}>
+      <Text style={styles.contactLink}>🌐 www.etudeplusforma.fr</Text>
+    </TouchableOpacity>
+  </View>
+</View>
+
+{/* Avis Google */}
+<View style={styles.linksContainer}>
+  <Text style={styles.sectionTitle}>Votre avis nous intéresse</Text>
+  <TouchableOpacity style={styles.linkButton} onPress={openGoogleReview}>
+    <View style={styles.linkContent}>
+      <Ionicons name="star-outline" size={20} color="#ff8800" style={styles.linkIcon} />
+      <Text style={styles.linkText}>Laisser un avis Google</Text>
+      <Feather name="arrow-right" size={18} color="#0f52ba" />
+    </View>
+  </TouchableOpacity>
+</View>
+
 
 {/* FAQ Section unchanged */}
       <View style={styles.faqSection}>
@@ -99,7 +122,6 @@ export default function ContactScreen() {
     </ScrollView>
   );
 }
-
 const styles = StyleSheet.create({
   scrollContainer: {
     padding: 24,
@@ -172,25 +194,23 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
   },
+  linkContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+  },
+  linkIcon: {
+    fontSize: 18,
+    marginRight: 8,
+  },
+  linkArrow: {
+    color: '#0f52ba',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
 
-linkContent: {
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  width: '100%',
-},
-
-linkIcon: {
-  fontSize: 18,
-  marginRight: 8,
-},
-
-linkArrow: {
-  color: '#0f52ba',
-  fontSize: 20,
-  fontWeight: 'bold',
-},
-
+  // FAQ
   faqSection: {
     marginTop: 50,
     width: '100%',
@@ -247,5 +267,41 @@ linkArrow: {
     height: 1,
     backgroundColor: '#ffffff30',
     marginVertical: 8,
+  },
+
+  // 🔶 New styles for Contact Info Section
+  contactContainer: {
+    width: '100%',
+    maxWidth: 600,
+    backgroundColor: '#ffffff',
+    borderRadius: 16,
+    padding: 20,
+    marginTop: 20,
+    marginBottom: 30,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 4,
+  },
+  contactItem: {
+    marginBottom: 20,
+  },
+  contactLabel: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#0f3b67',
+    marginBottom: 4,
+  },
+  contactPhone: {
+    fontSize: 16,
+    color: '#ec6b1e',
+    textDecorationLine: 'underline',
+  },
+  contactLink: {
+    fontSize: 15,
+    color: '#0f52ba',
+    marginTop: 4,
+    textDecorationLine: 'underline',
   },
 });

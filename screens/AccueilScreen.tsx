@@ -7,14 +7,14 @@ export default function AccueilScreen() {
       {/* Logo et titre */}
       <View style={styles.header}>
         <Image source={require('../assets/book.png')} style={styles.logo} resizeMode="contain" />
-        <Text style={styles.mainTitle}>Étude Plus</Text>
+        <Text style={styles.mainTitle}>Etude Plus</Text>
         <Text style={styles.tagline}>Accompagner, soutenir, faire réussir.</Text>
       </View>
 
       {/* Présentation */}
       <View style={styles.presentationCard}>
         <Text style={styles.presentationText}>
-          Depuis plus de 8 ans, Étude Plus accompagne les élèves du primaire à la terminale pour leur permettre d’exprimer pleinement leur potentiel.
+          Depuis plus de 8 ans, Etude Plus accompagne les élèves du primaire à la terminale pour leur permettre d’exprimer pleinement leur potentiel.
         </Text>
       </View>
 

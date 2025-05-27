@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Animated, Linking } from 'react-native';
 
-export default function ServicesScreen() {
+export default function SoutienScreen() {
   const scale = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
@@ -13,7 +13,7 @@ export default function ServicesScreen() {
     ).start();
   }, []);
 
-  const openServicesPage = () => {
+  const openSoutienPage = () => {
     Linking.openURL('https://etudeplus.org');
   };
 
@@ -22,15 +22,15 @@ export default function ServicesScreen() {
       
       {/* En-tête */}
       <View style={styles.headerSection}>
-        <Text style={styles.mainTitle}>Nos Services</Text>
+        <Text style={styles.mainTitle}>Soutien scolaire</Text>
         <Text style={styles.mainSubtitle}>Un accompagnement pédagogique sur-mesure pour chaque élève</Text>
 
-        <View style={styles.servicesGrid}>
+        <View style={styles.soutienGrid}>
           {[
-            { title: 'Cours Particuliers', desc: 'Cours à domicile dans toutes les matières scolaires.' },
-            { title: 'Soutien Scolaire', desc: 'Aide hebdomadaire pour réussir toute l’année.' },
-            { title: 'Méthodologie', desc: 'Apprendre à s’organiser, mieux travailler et devenir autonome.' },
-            { title: 'Préparation aux Examens', desc: 'Stages intensifs pour le Brevet, le Bac, et concours.' }
+            { title: 'Cours Particuliers', desc: 'Cours solitaire dans toutes les matières scolaires.' },
+            { title: 'Cours en duo', desc: 'Cours par groupe de 2 dans les matières scolaires.' },
+            { title: 'Cours en groupe', desc: 'Cours par groupe de 4 dans les matières scolaires.' },
+            { title: 'Stages intensifs', desc: 'Cours par groupe durant les vacances scolaires' }
           ].map((service, index) => (
             <View key={index} style={styles.serviceCard}>
               <Text style={styles.serviceTitle}>{service.title}</Text>
@@ -42,7 +42,7 @@ export default function ServicesScreen() {
 
       {/* Pourquoi nous ? */}
       <View style={styles.whiteSection}>
-        <Text style={styles.sectionTitle}>Pourquoi choisir Étude Plus ?</Text>
+        <Text style={styles.sectionTitle}>Pourquoi choisir Etude Plus ?</Text>
         <View style={styles.featuresRow}>
           {[
             { icon: '🤝', label: 'Suivi personnalisé' },
@@ -74,7 +74,7 @@ export default function ServicesScreen() {
       {/* CTA */}
       <View style={styles.ctaSection}>
         <Animated.View style={[styles.buttonWrapper, { transform: [{ scale }] }]}>
-          <TouchableOpacity style={styles.button} onPress={openServicesPage}>
+          <TouchableOpacity style={styles.button} onPress={openSoutienPage}>
             <Text style={styles.buttonText}>Voir plus sur notre site</Text>
           </TouchableOpacity>
         </Animated.View>
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
     textAlign: 'center',
   },
-  servicesGrid: {
+  soutienGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
@@ -140,20 +140,22 @@ const styles = StyleSheet.create({
   },
 
   whiteSection: {
-    backgroundColor: '#ffffff',
-    width: '100%',
-    paddingVertical: 40,
-    paddingHorizontal: 20,
-    alignItems: 'center',
-    marginTop: 20,
-    borderTopLeftRadius: 40,
-    borderTopRightRadius: 40,
-    shadowColor: '#ec6b1e',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-    elevation: 6,
-  },
+  backgroundColor: '#ffffff',
+  width: '100%',
+  paddingVertical: 40,
+  paddingHorizontal: 20,
+  alignItems: 'center',
+  marginTop: 20,
+  borderTopLeftRadius: 40,
+  borderTopRightRadius: 40,
+  borderBottomLeftRadius: 40, // ✅ Ajouté
+  borderBottomRightRadius: 40, // ✅ Ajouté
+  shadowColor: '#ec6b1e',
+  shadowOffset: { width: 0, height: 6 },
+  shadowOpacity: 0.2,
+  shadowRadius: 8,
+  elevation: 6,
+},
   sectionTitle: {
     fontSize: 24,
     fontWeight: 'bold',
