@@ -46,9 +46,9 @@ export default function FormationScreen() {
       <View style={styles.whiteCard}>
         <Text style={styles.sectionTitle}>Nos Formules</Text>
         {[
-          { name: 'STANDARD', price: 'À partir de 290€', color: '#ec6b1e', content: ['10h de cours', 'Support + Teams', 'Préparation TCF/DELF/DALF', 'Suivi personnalisé'] },
-          { name: 'ESSENTIEL', price: 'À partir de 490€', color: '#0f3b67', content: ['20h de cours', 'Support + Teams', 'Réduction incluse', 'Suivi personnalisé'] },
-          { name: 'PREMIUM', price: '890€', color: '#0f52ba', content: ['30h de cours', 'Support + Teams', 'Coaching individuel', 'Frais offerts'] },
+          { name: 'STANDARD', color: '#ec6b1e', content: ['10h de cours', 'Support + Teams', 'Préparation TCF/DELF/DALF', 'Suivi personnalisé'] },
+          { name: 'ESSENTIEL', color: '#0f3b67', content: ['20h de cours', 'Support + Teams', 'Réduction incluse', 'Suivi personnalisé'] },
+          { name: 'PREMIUM', color: '#0f52ba', content: ['30h de cours', 'Support + Teams', 'Coaching individuel', 'Frais offerts'] },
         ].map((formule, idx) => (
           <View key={idx} style={[styles.formuleCard, { borderColor: formule.color }]}>
             <Text style={[styles.formuleTitle, { color: formule.color }]}>{formule.name}</Text>
@@ -58,7 +58,6 @@ export default function FormationScreen() {
                 <Text style={styles.listText}>{item}</Text>
               </View>
             ))}
-            <Text style={styles.price}>{formule.price}</Text>
           </View>
         ))}
       </View>
@@ -195,13 +194,6 @@ listText: {
   color: '#0f3b67',
   textAlign: 'left',
 },
-  price: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#0f3b67',
-    marginTop: 8,
-    textAlign: 'center',
-  },
   buttonWrapper: {
     marginTop: 20,
     marginBottom: 40,

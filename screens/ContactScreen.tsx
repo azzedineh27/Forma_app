@@ -57,7 +57,7 @@ export default function ContactScreen() {
 
   {/* Livry-Gargan */}
   <View style={styles.contactItem}>
-    <Text style={styles.contactLabel}>Étude Plus - Livry-Gargan</Text>
+    <Text style={styles.contactLabel}>Etude Plus - Livry-Gargan</Text>
     <TouchableOpacity onPress={() => Linking.openURL('tel:+33123456789')}>
       <Text style={styles.contactPhone}>📞 01 23 45 67 89</Text>
     </TouchableOpacity>
@@ -68,15 +68,18 @@ export default function ContactScreen() {
 
   {/* Clichy-sous-Bois */}
   <View style={styles.contactItem}>
-    <Text style={styles.contactLabel}>Étude Plus - Clichy-sous-Bois</Text>
+    <Text style={styles.contactLabel}>Etude Plus - Clichy-sous-Bois</Text>
     <TouchableOpacity onPress={() => Linking.openURL('tel:+33987654321')}>
       <Text style={styles.contactPhone}>📞 09 87 65 43 21</Text>
+    </TouchableOpacity>
+    <TouchableOpacity onPress={() => Linking.openURL('https://www.etudeplus.org')}>
+      <Text style={styles.contactLink}>🌐 www.etudeplus.org</Text>
     </TouchableOpacity>
   </View>
 
   {/* Centre de formation */}
   <View style={styles.contactItem}>
-    <Text style={styles.contactLabel}>Étude Plus Formation</Text>
+    <Text style={styles.contactLabel}>Etude Plus Formation</Text>
     <TouchableOpacity onPress={() => Linking.openURL('tel:+33711223344')}>
       <Text style={styles.contactPhone}>📞 07 11 22 33 44</Text>
     </TouchableOpacity>

@@ -14,7 +14,7 @@ export default function AccueilScreen() {
       {/* Présentation */}
       <View style={styles.presentationCard}>
         <Text style={styles.presentationText}>
-          Depuis plus de 8 ans, Etude Plus accompagne les élèves du primaire à la terminale pour leur permettre d’exprimer pleinement leur potentiel.
+          Depuis 2006, Etude Plus accompagne les élèves du primaire à la terminale pour leur permettre d’exprimer pleinement leur potentiel.
         </Text>
       </View>
 
@@ -36,9 +36,9 @@ export default function AccueilScreen() {
       {/* Chiffres clés */}
       <View style={styles.statsRow}>
         {[
-          { value: '+200', label: 'élèves suivis', color: '#ec6b1e' },
+          { value: '+400', label: 'élèves/an', color: '#ec6b1e' },
           { value: '97%', label: 'satisfaction', color: '#0f3b67' },
-          { value: '8 ans', label: 'd’expérience', color: '#0f52ba' },
+          { value: '8 ans', label: 'création', color: '#0f52ba' },
         ].map((stat, idx) => (
           <View key={idx} style={[styles.statBubble, { backgroundColor: stat.color }]}>
             <Text style={styles.statValue}>{stat.value}</Text>
